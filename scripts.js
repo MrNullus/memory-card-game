@@ -1,6 +1,72 @@
 // Data Initial
-const cards = document.querySelectorAll(".memory-card");
+const cardsImgs = [
+	{
+		id: "img1",
+		dataFramework: "aurelia",
+		url: "img/aurelia.svg",
+		alt: "Aurelia"
+	},
+	{	
+		id: "img2",
+		dataFramework: "vue",
+		url: "img/vue.svg",
+		alt: "Vue"
+		
+	},
+	{
+		id: "img3",
+		dataFramework: "angular",
+		url: "img/angular.svg",
+		alt: "Angular"
+	},
+	{
+		id: "img4",
+		dataFramework: "ember",
+		url: "img/ember.svg",
+		alt: "Ember"
+	},
+	{
+		id: "img5", 
+		dataFramework: "backbone",
+		url: "img/backbone.svg",
+		alt: "Backbone"
+		
+	},
+	{
+		id: "img6",
+		dataFramework: "react",
+		url: "img/react.svg",
+		alt: "React"	
+	}
+];
 
+let boardGame = document.querySelector(".memory-game");
+
+function displayForCard() {
+	let memoryCardElement = cardsImgs.map((card) => {
+	    return `
+	    	<!-- single card -->
+	        <div class="memory-card" data-framework="${card.dataFramework}">
+	            <img class="front-face" id="${card.id}" src="${card.url}" alt="${card.alt}" />
+	            <img class="back-face" src="img/js-badge.svg" alt="JS Badge" />
+	        </div>
+	        <!-- single card -->
+	        <div class="memory-card" data-framework="${card.dataFramework}">
+	            <img class="front-face" id="${card.id}" src="${card.url}" alt="${card.alt}" />
+	            <img class="back-face" src="img/js-badge.svg" alt="JS Badge" />
+	        </div>
+
+	    `;
+	}).join(" ");
+
+	boardGame.innerHTML = memoryCardElement;
+	// console.log(memoryCardElement);
+}
+
+
+displayForCard()
+
+const cards = document.querySelectorAll(".memory-card");
 let hasFlippedCard = false;
 let lockBoard = false;
 let firstCard, secondCard;
@@ -70,3 +136,4 @@ function resetBoard() {
 
 // Events
 cards.forEach(card => card.addEventListener("click", flipCard));
+
